@@ -1,0 +1,17 @@
+{
+    "npm": {
+        "gulp-wk-default": "0.6.5",
+        "gulp-wk-hub-publish": "0.1.0",
+        "wk-css": "0.17.1",
+        "wk-events": "0.1.2",
+        "wk-icons": "0.1.0-master.8",
+        "wk-ng": "0.2.1",
+        "wk-tshelpers": "0.1.0",
+        "wk-ui": "1.0.0",
+        "wk-vars": "0.2.1"
+    },
+    "env": {
+        "node": "v4.4.5",
+        "platform": "win32"
+    }
+}
