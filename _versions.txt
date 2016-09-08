@@ -1,6 +1,6 @@
 {
     "npm": {
-        "gulp-wk-default": "0.6.5",
+        "gulp-wk-default": "0.8.1",
         "gulp-wk-hub-publish": "0.1.0",
         "wk-css": "0.17.1",
         "wk-events": "0.1.2",

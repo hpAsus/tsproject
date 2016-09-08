@@ -5,4 +5,10 @@ export function appLanguage($translateProvider: ng.translate.ITranslateProvider)
 
     $translateProvider.preferredLanguage(language);
     $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+
+    $translateProvider.useStaticFilesLoader({
+        prefix: 'app/src/ts-summer/lang/lang-',
+        suffix: '.json'
+    });
+
 }

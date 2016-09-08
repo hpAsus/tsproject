@@ -14,6 +14,7 @@ module.exports = function (config) {
       './node_modules/angular-ui-grid/'
     ]
   };
+  config.sassWatch.config = config.sass.config;
   config.copyWkFonts = {
     src: './node_modules/wk-css/src/wk-components/fonts/**/*',
     dest: './dist/app/assets/fonts'

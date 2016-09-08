@@ -1,0 +1,19 @@
+/* Auth Component */
+/*====================================================================================================================*/
+.authCompontent {
+	.wk-login-screen {
+		display: table;
+
+		.wk-layout-centered-medium {
+			display: table-cell;
+			height: 100%;
+			vertical-align: middle;
+		}
+	}
+}
+
+/* HELPERS */
+/*====================================================================================================================*/
+.text-center {
+	text-align: center;
+}
