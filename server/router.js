@@ -39,10 +39,7 @@ router.route('/login')
                 req.session.touch(req.session.id, req.session);
                 res.send({
                     success: false,
-                    error: {
-                        code: 401,
-                        message: err.toString()
-                    }
+                    error: err.toString()
                 });
             });
 
@@ -71,23 +68,18 @@ router.route('/logout').get(pause(timeOut), function (req, res) {
 // Forgot Password
 // =====================================================================================================================
 router.route('/forgot').get(pause(timeOut), function (req, res) {
-
 	req.session.touch(req.session.id, req.session);
-
     userManager.getUser(req.query.user)
 	    .then(function (user) {
 		    res.send({
 			    success: true,
-			    password: user.password
+			    user: user
 		    });
 	    })
 	    .catch(function (err) {
 		    res.send({
 			    success: false,
-			    error: {
-				    code: 500, //todo: change code
-				    message: '[ERROR] ' + err
-			    }
+			    error: err.toString()
 		    });
 	    });
 

@@ -13,10 +13,14 @@ wkDefaults.loadProfiles('ts-application');
 wkDefaults.loadConfig(require('./gulp.config'));
 
 gulp.task('copy:wkFonts', wkDefaults.tasks.copy());
+gulp.task('copy:serverFiles', wkDefaults.tasks.copy());
+gulp.task('copy:dataFiles', wkDefaults.tasks.copy());
 
 wkDefaults.dependencies('build:local').pop();
 wkDefaults.dependencies('sass').push('copy:wkFonts');
 wkDefaults.dependencies('build:stage:2').push('compile:tsc', 'sass');
+wkDefaults.dependencies('copy').push('copy:serverFiles');
+wkDefaults.dependencies('copy').push('copy:dataFiles');
 wkDefaults.dependencies('build:stage:3').push('build:versions');
 wkDefaults.dependencies('build:stage:4').pop();
 

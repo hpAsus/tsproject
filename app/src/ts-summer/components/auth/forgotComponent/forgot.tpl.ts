@@ -1,22 +1,27 @@
 export const template: string = `
 
-<form class="wk-login-form">
-    <h3>Forgot Username or Password</h3>
-    <p>To receive your password, please enter the email address you have registered with. 
-    We will email you a link to a page where you can create a new password. If you do not receive an email, 
-    please check your spam mail folder or contact Customer Support.</p>
-    <div class="wk-field-item">
+<form class="wk-login-form" name="forgotForm" ng-submit="vm.submitForm()">
+    <h3>{{ 'AUTH.FORGOT_TITLE' | translate }}</h3>
+    <p>{{ 'AUTH.FORGOT_DESC' | translate }}</p>
+    <div class="wk-field-item" ng-class="{ 'wk-field-has-error': forgotForm.$invalid && forgotForm.$dirty}">
         <div class="wk-field-header">
-            <label>Email Address</label>
+            <label>{{ 'AUTH.LABELS.EMAIL' | translate }}</label>
         </div>
         <div class="wk-field-body">
-            <input type="email" ng-model="vm.login" />
+            <input type="email" name="email" ng-model="vm.email" required ts-email-validator />
+        </div>
+        <div class="wk-field-error" ng-show="forgotForm.email.$error.tsEmail">
+            {{ 'AUTH.ERRORS.EMAIL_INVALID' | translate }}
+        </div>
+        <div class="wk-field-error" ng-show="forgotForm.email.$error.required">
+            {{ 'AUTH.ERRORS.EMAIL_REQUIRED' | translate }}
         </div>
     </div>
     <div class="wk-button-bar">
         <div class="wk-button-group-right">
-            <button type="button" ui-sref="login" class="wk-button-secondary">Back to Login</button>
-        <button type="submit" class="wk-button-success">Reset password</button>
+            <button type="button" ui-sref="login" class="wk-button-secondary">{{ 'AUTH.BACK_TO_LOGIN' | translate }}</button>
+            <button type="submit" class="wk-button-success" ng-disabled="forgotForm.$invalid">
+            {{ 'AUTH.FORGOT_BUTTON' | translate }}</button>
         </div>
     </div>
 </form>

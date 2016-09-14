@@ -6,7 +6,6 @@ var express = require('express'),
     wkVars = require('wk-vars');
 
 var md5 = require('md5');
-var express = require('express');
 var router = require('./server/router');
 var apiRouter = require('./server/router_api');
 var methodOverride = require('method-override');
@@ -65,7 +64,6 @@ server.use(wkVars.init(path.join(__dirname, '/')));
 
 server.use('/_versions.txt', function (req, resp) {
     resp.setHeader('Content-Type', 'text/plain');
-
     fs.access(__dirname + '/_versions.txt', fs.F_OK, function (err) {
         if (!err) {
             resp.sendFile(__dirname + '/_versions.txt');

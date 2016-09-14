@@ -1,0 +1,75 @@
+/* Colors
+// ==================================================================================================================*/
+$primary-color: #607D8B;
+
+// Loader
+$loader-light-color: #FFC107;
+$loader-dark-color: #000;
+
+
+/* HELPERS */
+/*====================================================================================================================*/
+.none {
+	display: none;
+}
+.text-center {
+	text-align: center;
+}
+.text-left {
+	text-align: left;
+}
+.text-right {
+	text-align: right;
+}
+/*====================================================================================================================*/
+hr {
+    border: 0;
+    color: #dadada;
+    background: #dadada;
+    height: 1px;
+}
+
+/* Loader
+// ==================================================================================================================*/
+.loader-overlay {
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, .9);
+	z-index: 10000;
+}
+
+.spin {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	margin: -50px 0 0 -50px;
+	width: 100px;
+	height: 100px;
+	border-radius: 50%;
+	border: solid 3px $loader-dark-color;
+	border-top-color: $loader-light-color;
+	animation: spin 1s infinite linear;
+}
+
+@-webkit-keyframes spin {
+	100% {
+		-webkit-transform: rotate(360deg);
+	}
+}
+
+@-moz-keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}
+
+@keyframes spin {
+	100% {
+		transform: rotate(360deg);
+	}
+}

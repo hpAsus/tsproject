@@ -9,6 +9,8 @@ import {bootstrap} from 'wk-ng/bootstrap';
 import {App} from './app';
 import {appModule} from './module';
 
+import './lang';
+
 export function run(): void {
     bootstrap(App, [], appModule);
 }

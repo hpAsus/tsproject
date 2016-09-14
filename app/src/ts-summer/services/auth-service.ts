@@ -1,8 +1,5 @@
 import {Injectable} from 'wk-ng/decorators/injectable';
 
-// const enum UserRoles = {
-//     ROLE_USER:
-// };
 
 @Injectable()
 export class AuthService {
@@ -11,24 +8,43 @@ export class AuthService {
     }
 
     // user login
-    userLogin(userData: ILogin.ICredentials): Promise<any> {
-        return this.$http({
-            method: 'POST',
-            url: '/login',
-            data: userData
+    userLogin(userData: ILogin.ICredentials): Promise<ILogin.IServerResponse> {
+        return new Promise((resolve: Function, reject: Function) => {
+            this.$http({
+                    method: 'POST',
+                    url: '/login',
+                    data: userData
+                })
+                .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
+                    (data.data.success) ? resolve(data.data) : reject(data.data);
+                })
+                .catch((error: ILogin.IError) => {
+                    reject(error);
+                });
+
         });
+
     }
 
 
     // reset password
-    resetPassword(login: string): Promise<any> {
-        return this.$http({
-            method: 'GET',
-            url: '/forgot',
-            params: {
-                user: login
-            }
+    resetPassword(login: string): Promise<ILogin.IServerResponse> {
+        return new Promise((resolve: Function, reject: Function) => {
+            this.$http({
+                    method: 'GET',
+                    url: '/forgot',
+                    params: {
+                        user: login
+                    }
+                })
+                .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
+                    (data.data.success) ? resolve(data.data) : reject(data.data);
+                })
+                .catch((error: ILogin.IError) => {
+                    reject(error);
+                });
         });
+
     }
 
     // user logout
@@ -41,16 +57,13 @@ export class AuthService {
 
     // check if user has access
     checkUserAccess(userRole: string, accessRoles: Array<string>): boolean {
-        // let access: number = (accessRoles) ? accessRoles.findIndex((role: string) => (role === userRole)) : 0;
-        let access: boolean = _.find(accessRoles, {role: userRole }) !== undefined;
-        return access;
-        // return access >= 0;
+        return _.find(accessRoles, {role: userRole}) !== undefined;
     }
 
-    doLogin(creds: ILogin.ICredentials): Promise<string> {
-        return new Promise((resolve: Function, reject: Function) => {
-            // this.$http()
-            resolve('success');
-        });
-    }
+    // doLogin(creds: ILogin.ICredentials): Promise<string> {
+    //     return new Promise((resolve: Function, reject: Function) => {
+    //         // this.$http()
+    //         resolve('success');
+    //     });
+    // }
 }

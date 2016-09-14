@@ -79,7 +79,6 @@ UserManager.prototype.authenticate = function (email, password) {
 // Get Single User
 // =====================================================================================================================
 UserManager.prototype.getUser = function(email) {
-
     return new Promise(function (resolve, reject) {
         db.findOne({
             email: email

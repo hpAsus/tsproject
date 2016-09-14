@@ -1,16 +1,21 @@
-@import
-  './bootstrap/variables',
-  'utilities',
-  'wk-init';
+@import './bootstrap/variables',
+'utilities',
+'wk-init';
 
 $wk-bootstrap-features: (all);
 $wk-component-features: (all);
 
-@import
-  'wk-overrides',
-  'wk-reset',
-  'wk-bootstrap-init',
-  'wk-components-all',
-  'wk-icons',
-  'wk-icons-filled',
-  'src/ts-summer/scss/main';
+@import 'wk-overrides',
+'wk-reset',
+'wk-components-all',
+'wk-bootstrap-init',
+'wk-icons',
+'wk-icons-filled';
+
+@import "assets/scss/main";
+@import "assets/scss/toast";
+@import "src/ts-summer/components/auth/auth";
+@import "src/ts-summer/components/dashboard/dashboard";
+@import "src/ts-summer/components/dashboard/profile/profile";
+@import "src/ts-summer/components/dashboard/users/users";
+@import "src/ts-summer/components/dashboard/actionButtonTest/actionButton/actionButton";
