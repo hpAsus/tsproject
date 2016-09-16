@@ -4,6 +4,11 @@ export const template: string = `
         <div class="wk-layout-centered-medium">
               <header role="banner" class="wk-header">
                 <div class="wk-header-container">
+                    <div class="text-center">
+                        <a ng-click="vm.switchLang('en')"><span>English</span></a> | 
+                        <a ng-click="vm.switchLang('ru')"><span>Русский</span></a>
+                    </div>
+                    
                     <h1 class="text-center">{{ 'GENERAL.PROJECT_TITLE' | translate }} 
                     <em>{{ 'GENERAL.PROJECT_SLOGAN' | translate }}</em></h1>
                 </div>

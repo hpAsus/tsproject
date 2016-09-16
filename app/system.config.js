@@ -11,7 +11,9 @@ System.config({
         'angular-cookies': {deps: ['angular']},
         'reflect-metadata': {format: 'global'},
         'angular-material': {deps: ['angular']},
-        'angular-aria': {deps: ['angular']}
+        'angular-aria': {deps: ['angular']},
+        'angular-local-storage': {format: 'global'},
+        'moment': {format: 'global'}
     },
 
     paths: {
@@ -27,6 +29,8 @@ System.config({
         "reflect-metadata": "node_modules/reflect-metadata/Reflect.js",
         "angular-material": "node_modules/angular-material/angular-material.js",
         'angular-aria': 'node_modules/angular-aria/angular-aria.js',
+        'angular-local-storage': 'node_modules/angular-local-storage/dist/angular-local-storage.js',
+        'moment': 'node_modules/moment/moment.js',
 
         "*": "node_modules/*.js"
     }

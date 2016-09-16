@@ -56,10 +56,7 @@ router.route('/logout').get(pause(timeOut), function (req, res) {
         } else {
             res.send({
                 success: false,
-                error: {
-                    code: 500,
-                    message: 'Problems with session destroy'
-                }
+                error: 'Problems with session destroy'
             });
         }
     });

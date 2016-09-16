@@ -1,3 +1,4 @@
+/// <reference path="globals/angular-local-storage/index.d.ts" />
 /// <reference path="globals/angular-material/index.d.ts" />
 /// <reference path="globals/angular-translate/index.d.ts" />
 /// <reference path="globals/angular-ui-grid/index.d.ts" />

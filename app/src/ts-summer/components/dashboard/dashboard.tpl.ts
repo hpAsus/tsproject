@@ -6,9 +6,17 @@ export const template: string = `
           <li role="presentation"><a href="javascript:void(0)"><span class="wk-icon-more"></span>More</a></li>
         </ul>
         <ul class="wk-nav wk-green-icons">
-          <li role="presentation"><a ui-sref="viewProfile"><span class="wk-icon-globe"></span>Language</a></li>
-          <li role="presentation"><a ui-sref="viewProfile"><span class="wk-icon-user"></span>Account</a></li>
-          <li role="presentation"><a ui-sref="logout"><span class="wk-icon-logout"></span>Logout</a></li>
+           
+          <li role="presentation">
+            <a ng-click="vm.switchLang('en')"><span>{{ 'LANGS.EN' | translate }}</span></a> | 
+            <a ng-click="vm.switchLang('ru')"><span>{{ 'LANGS.RU' | translate }}</span></a>
+          </li>
+          <li role="presentation">
+            <a ui-sref="viewProfile"><span class="wk-icon-user"></span>{{ 'DASHBOARD.ACCOUNT' | translate }}</a>
+          </li>
+          <li role="presentation">
+            <a ng-click="vm.logout()"><span class="wk-icon-logout"></span>{{ 'DASHBOARD.LOGOUT' | translate }}</a>
+          </li>
         </ul>
       </div>
     </header>
@@ -19,11 +27,11 @@ export const template: string = `
                 <li role="presentation"><a href="javascript:void(0)"><span class="wk-icon-menu"></span>Menu</a></li>
             </ul>
             <ul class="wk-nav">
-                <li role="presentation"><a ui-sref="actionTest">ActionButton Playground</a></li>
-                <li role="presentation"><a ui-sref="users">Manage Users</a></li>
-                <li role="presentation"><a ui-sref="feedback">Feedback</a></li>
+                <li role="presentation"><a ui-sref="actionTest">{{ 'DASHBOARD.MENU_ACTION_BUTTON' | translate }}</a></li>
+                <li role="presentation"><a ui-sref="users">{{ 'DASHBOARD.MENU_MANAGE_USERS' | translate }}</a></li>
+                <li role="presentation"><a ui-sref="feedback">{{ 'DASHBOARD.MENU_FEEDBACK' | translate }}</a></li>
             </ul>
-            <div class="wk-product-name"><em>TS Edition</em></div>
+            <div class="wk-product-name"><em>{{ 'GENERAL.PROJECT_SLOGAN' | translate }}</em></div>
         </div>
     </nav>
 <div class="dashboard-page-callout">    

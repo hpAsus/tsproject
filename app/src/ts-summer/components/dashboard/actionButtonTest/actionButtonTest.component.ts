@@ -1,7 +1,7 @@
 import {Component} from 'wk-ng/decorators/component';
 import {template} from './actionButtonTest.tpl';
-import {ActionButtonComponent} from './actionButton/actionButton.component';
-import {ActionButtonService} from './actionButton/actionButton.service';
+import {ActionButtonComponent} from '../actionButton/actionButton.component';
+import {ActionButtonService} from '../actionButton/actionButton.service';
 import {ToastService} from '../../../services/toast-service';
 
 @Component({
@@ -11,51 +11,6 @@ import {ToastService} from '../../../services/toast-service';
     providers: [ActionButtonService]
 })
 export class ActionButtonTestComponent {
-
-    button1: string = 'button1';
-    button2: string = 'button2';
-    testActions1: Array<IActionButton.IActionItem>;
-    testActions2: Array<IActionButton.IActionItem>;
-
-    // Test 1 Function that returns promise (fast no delay)
-    testAction1: Function = function (): void {
-        return this.$http({
-            method: 'GET',
-            url: '/action_req_1'
-        });
-    };
-    // Test 2 Slow
-    testAction2: Function = function (): void {
-        return this.$http({
-            method: 'GET',
-            url: '/action_req_2'
-        });
-    };
-
-    // Test 3. 5 sec delay and error
-    testAction3: Function = function (): void {
-        return this.$http({
-            method: 'GET',
-            url: '/action_req_3'
-        });
-    };
-
-    // Test 4. Slowest. More than final delay
-    testAction4: Function = function (): void {
-        return this.$http({
-            method: 'GET',
-            url: '/action_req_4'
-        });
-    };
-
-    // Test 5. Slowest. More than final delay
-    testAction5: Function = function (): void {
-        return this.$http({
-            method: 'GET',
-            url: '/action_req_5'
-        });
-    };
-
     constructor(private $actionButton: ActionButtonService,
                 private $http: ng.IHttpService,
                 private $log: ng.ILogService,
@@ -118,5 +73,50 @@ export class ActionButtonTestComponent {
         this.$log.info(this.testActions1);
         this.$log.info(this.testActions2);
     }
+
+    button1: string = 'button1';
+    button2: string = 'button2';
+    testActions1: Array<IActionButton.IActionItem>;
+    testActions2: Array<IActionButton.IActionItem>;
+
+    // Test 1 Function that returns promise (fast no delay)
+    testAction1(): ng.IHttpPromise<any> {
+        console.log(this);
+        return this.$http({
+            method: 'GET',
+            url: '/action_req_1'
+        });
+    };
+    // Test 2 Slow
+    testAction2(): ng.IHttpPromise<any> {
+        return this.$http({
+            method: 'GET',
+            url: '/action_req_2'
+        });
+    };
+
+    // Test 3. 5 sec delay and error
+    testAction3(): ng.IHttpPromise<any> {
+        return this.$http({
+            method: 'GET',
+            url: '/action_req_3'
+        });
+    };
+
+    // Test 4. Slowest. More than final delay
+    testAction4(): ng.IHttpPromise<any> {
+        return this.$http({
+            method: 'GET',
+            url: '/action_req_4'
+        });
+    };
+
+    // Test 5. Slowest. More than final delay
+    testAction5(): ng.IHttpPromise<any> {
+        return this.$http({
+            method: 'GET',
+            url: '/action_req_5'
+        });
+    };
 
 }

@@ -1,27 +1,20 @@
-// Biography Validator
-// =====================================================================================================================
-// (function () {
-//     var atDateValidatorFunc = function (CONST) {
-//         return {
-//             require: 'ngModel',
-//             restrict: 'A',
-//             link: function (scope, elem, attrs, ctrl) {
-//
-//                 //check for date format
-//                 ctrl.$validators.dateValidator = function (modelValue) {
-//                     var formatPlus = attrs['dateFormat']
-//                         .toLowerCase()
-//                         .replace('dd', 'd')
-//                         .replace('mm', 'm')
-//                         .toUpperCase();
-//
-//                     var checkPlus = moment(modelValue, formatPlus, true).isValid();
-//
-//                     return (moment(modelValue, attrs['dateFormat'], true).isValid()) || checkPlus;
-//                 };
-//             }
-//         };
-//     };
-//
-//     angular.module('app.profile').directive('atDateValidator', ['CONST', atDateValidatorFunc]);
-// })();
+import {Directive} from 'wk-ng/decorators/directive';
+import 'moment';
+@Directive({
+    selector: '[ts-date-validator]'
+})
+export class TsDateValidatorDirective {
+    ngLink(scope: ng.IScope, el: JQuery, attrs: ng.IAttributes): void {
+        let ngModelController: ng.INgModelController = el.data('$ngModelController');
+
+        ngModelController.$validators['tsDate'] = (value: string): boolean => {
+            let formatPlus: string = attrs['dateFormat']
+                        .toLowerCase()
+                        .replace('dd', 'd')
+                        .replace('mm', 'm')
+                        .toUpperCase();
+            let checkPlus: boolean = moment(value, formatPlus, true).isValid();
+            return (moment(value, attrs['dateFormat'], true).isValid()) || checkPlus;
+        };
+    }
+}

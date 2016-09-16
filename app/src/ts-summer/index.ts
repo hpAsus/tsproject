@@ -10,7 +10,8 @@ import {App} from './app';
 import {appModule} from './module';
 
 import './lang';
+import {UserDataService} from './services/user-data-service';
 
 export function run(): void {
-    bootstrap(App, [], appModule);
+    bootstrap(App, [UserDataService], appModule);
 }

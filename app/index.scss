@@ -12,10 +12,13 @@ $wk-component-features: (all);
 'wk-icons',
 'wk-icons-filled';
 
-@import "assets/scss/main";
 @import "assets/scss/toast";
+@import "assets/scss/progressCircular";
+//@import "../node_modules/wk-icons/dist/wk-icons.css";
+//@import "../node_modules/wk-icons/dist/wk-icons-filled.css";
 @import "src/ts-summer/components/auth/auth";
 @import "src/ts-summer/components/dashboard/dashboard";
 @import "src/ts-summer/components/dashboard/profile/profile";
 @import "src/ts-summer/components/dashboard/users/users";
-@import "src/ts-summer/components/dashboard/actionButtonTest/actionButton/actionButton";
+@import "src/ts-summer/components/dashboard/actionButton/actionButton";
+@import "assets/scss/main";

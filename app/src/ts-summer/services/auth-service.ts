@@ -48,10 +48,18 @@ export class AuthService {
     }
 
     // user logout
-    userLogout(): Promise<string> {
-        return this.$http({
-            method: 'GET',
-            url: '/logout'
+    userLogout(): Promise<ILogin.IServerResponse> {
+        return new Promise((resolve: Function, reject: Function) => {
+            this.$http({
+                    method: 'GET',
+                    url: '/logout',
+                })
+                .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
+                    (data.data.success) ? resolve(data.data) : reject(data.data);
+                })
+                .catch((error: ILogin.IError) => {
+                    reject(error);
+                });
         });
     }
 

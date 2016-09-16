@@ -4,6 +4,7 @@ import 'angular-ui-router';
 import 'angular-animate';
 import 'angular-material';
 import 'angular-aria';
+import 'angular-local-storage';
 import {appRouting} from './app-routing';
 import {appLanguage} from './app-language';
 
@@ -13,7 +14,8 @@ import {dashboardRouting} from './components/dashboard/dashboard.routing';
 export const appModule: ng.IModule = angular.module('ts-summer', [
     'pascalprecht.translate',
     'ui.router',
-    'ngMaterial'
+    'ngMaterial',
+    'LocalStorageModule'
 ])
 .config(appRouting)
 .config(authRouting)

@@ -3,7 +3,6 @@ import {Injectable} from 'wk-ng/decorators/injectable';
 
 @Injectable()
 export class LoaderService {
-    private _loader: ng.IAugmentedJQuery;
 
     // Add loader
     // =================================================================================================================
@@ -20,8 +19,7 @@ export class LoaderService {
 
             spin.className = 'spin';
             loaderContainer.appendChild(spin);
-            this._loader = angular.element(loaderContainer);
-            body.append(this._loader);
+            body.append(angular.element(loaderContainer));
         } else {
             this.hideLoader();
         }
@@ -30,15 +28,19 @@ export class LoaderService {
     // Show loader
     // =================================================================================================================
     showLoader (): void {
-        if (document.getElementsByClassName('loader-overlay').length) {
-            this._loader.removeClass('none');
+        let loader: Element = document.getElementsByClassName('loader-overlay')[0];
+        if (loader) {
+            loader.classList.remove('none');
         }
     }
 
     // Hide loader
     // =================================================================================================================
     hideLoader (): void {
-        this._loader.addClass('none');
+        let loader: Element = document.getElementsByClassName('loader-overlay')[0];
+        if (loader) {
+            loader.classList.add('none');
+        }
     }
 
     // Clear all loaders

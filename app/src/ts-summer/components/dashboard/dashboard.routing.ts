@@ -20,6 +20,7 @@ export function dashboardRouting($stateProvider: ng.ui.IStateProvider): void {
         parent: 'profileComponent',
         template: '<edit-profile-component></edit-profile-component>'
     });
+
     // =================================================================================================================
     // Action Test
     $stateProvider.state('actionTest', {
