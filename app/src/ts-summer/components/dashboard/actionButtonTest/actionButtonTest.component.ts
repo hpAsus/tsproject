@@ -70,8 +70,8 @@ export class ActionButtonTestComponent {
         this.testActions1 = this.$actionButton.getActions(this.button1);
         this.testActions2 = this.$actionButton.getActions(this.button2);
 
-        this.$log.info(this.testActions1);
-        this.$log.info(this.testActions2);
+        // this.$log.info(this.testActions1);
+        // this.$log.info(this.testActions2);
     }
 
     button1: string = 'button1';
@@ -81,7 +81,6 @@ export class ActionButtonTestComponent {
 
     // Test 1 Function that returns promise (fast no delay)
     testAction1(): ng.IHttpPromise<any> {
-        console.log(this);
         return this.$http({
             method: 'GET',
             url: '/action_req_1'

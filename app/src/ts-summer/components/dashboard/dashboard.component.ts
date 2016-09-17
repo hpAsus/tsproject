@@ -33,6 +33,7 @@ export class DashboardPageComponent {
                 private authService: AuthService,
                 private $state: ng.ui.IStateService,
                 private toastService: ToastService,
+                private localStorageService: angular.local.storage.ILocalStorageService,
                 private userDataService: UserDataService) {
 
         // If not Authorized - go to Login State

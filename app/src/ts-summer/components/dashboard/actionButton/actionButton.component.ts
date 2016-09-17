@@ -14,7 +14,11 @@ export class ActionButtonComponent {
     @Input('@buttonTitle') buttonTitle: string;
     @Input('=ngModel') actions: Array<IActionButton.IActionItem>;
 
-    showActionsMenu: boolean = false;
+    showActionsMenu: boolean;
+
+    constructor() {
+        this.showActionsMenu = false;
+    }
 
     // Open/Close Function
     showActions(): void {
