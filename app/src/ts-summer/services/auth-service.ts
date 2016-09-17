@@ -67,11 +67,4 @@ export class AuthService {
     checkUserAccess(userRole: string, accessRoles: Array<string>): boolean {
         return _.find(accessRoles, {role: userRole}) !== undefined;
     }
-
-    // doLogin(creds: ILogin.ICredentials): Promise<string> {
-    //     return new Promise((resolve: Function, reject: Function) => {
-    //         // this.$http()
-    //         resolve('success');
-    //     });
-    // }
 }
