@@ -41,7 +41,7 @@ export class UsersComponent {
         this.usersService.getAllUsers().then((data: IUsers.IServerResponse): void => {
             // httpLoggerService.logRequestTime(res);
             // $log.info('getAllUsers() [' + res.config.method + '] [' + res.config.url + '] [Params: ' + res.config.params + '] took ' + time + ' seconds.');
-            this.users = data.users;
+            // this.users = data.users;
             this.loader = false;
             this.showContent = true;
 
@@ -51,7 +51,7 @@ export class UsersComponent {
 
     // Create New User
     createNewUser(): void {
-        this.modalCreateUser.open();
+        // this.modalCreateUser.open();
     }
 
     // Edit User Information

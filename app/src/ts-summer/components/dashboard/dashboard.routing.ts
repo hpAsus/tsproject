@@ -7,19 +7,18 @@ export function dashboardRouting($stateProvider: ng.ui.IStateProvider): void {
         abstract: true,
         url: '/dashboard',
         resolve: {
-            // userSession: (profileService: ProfileService, userDataService: UserDataService): void => {
-            //     // profileService.checkUserSession()
-            //     //     .then((data: ILogin.IServerResponse) => {
-            //     //         console.log(data);
-            //     //         if (data.success) {
-            //     //             userDataService.setUserData(data.user);
-            //     //             userDataService.authorizeUser();
-            //     //         }
-            //     //     });
-            // }
-            test: ():void => {
-                // console.log('resolving dashboard state', lang);
+            userSession: (profileService: ProfileService, userDataService: UserDataService): Promise<void> => {
+                return profileService.checkUserSession()
+                    .then((data: ILogin.IServerResponse) => {
+                        console.log(data);
+                        userDataService.setUserData(data.user);
+                        userDataService.authorizeUser();
+
+                    });
             }
+            // test: ():void => {
+            //     console.log('resolving dashboard state', lang);
+            // }
         },
         data: {
             secure: true,
