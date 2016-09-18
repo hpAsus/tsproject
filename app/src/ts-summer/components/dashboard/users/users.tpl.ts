@@ -6,9 +6,9 @@ export const template: string = `
     </div>
     
     <div ng-show="vm.showContent">
-        <md-button class="md-raised create-user" ng-click="vm.createNewUser()">
+        <button class="create-user" ng-click="vm.createNewUser()">
         {{ 'USERS.LIST.NEW_USER' | translate}}
-        </md-button>
+        </button>
         <div class="t-table">
             <div ng-repeat="user in vm.users | orderBy:'email'" class="t-row">
                 <div class="t-cell cell-email">{{user.email}} 

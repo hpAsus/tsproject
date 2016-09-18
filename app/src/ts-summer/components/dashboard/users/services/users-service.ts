@@ -46,8 +46,8 @@ export class UsersService {
                 url: 'api/createUser',
                 data: data
             })
-                .then((data: ng.IHttpPromiseCallbackArg<IUsers.IServerResponse>): void => {
-                    (data.data.success) ? resolve(data.data) : reject(data.data);
+                .then((res: ng.IHttpPromiseCallbackArg<IUsers.IServerResponse>): void => {
+                    (res.data.success) ? resolve(res.data) : reject(res.data);
                 })
                 .catch((error: IUsers.IError) => {
                     reject(error);

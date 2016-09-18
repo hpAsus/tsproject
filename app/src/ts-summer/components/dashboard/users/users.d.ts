@@ -10,6 +10,10 @@ declare module IUsers {
         role: string;
     }
 
+    interface IUsersList {
+        [key: string]: IUserData;
+    }
+
     interface IError {
         success: boolean;
         error: string;
@@ -18,6 +22,7 @@ declare module IUsers {
     interface IServerResponse {
         success: boolean;
         users: IUsers.IUserData;
+        data?: Array<IUsers.IUserData>;
         error?: string;
     }
 }

@@ -172,7 +172,7 @@ apiRouter.route('/userslist')
             userManager.getAllUsers().then(function (users) {
                 res.send({
                     success: true,
-                    data: users
+                    users: users
                 });
             }).catch(function (err) {
                 res.send({

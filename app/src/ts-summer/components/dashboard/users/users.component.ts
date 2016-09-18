@@ -7,7 +7,6 @@ import {UsersService} from './services/users-service';
 import {ToastService} from '../../../services/toast-service';
 import {ModalApi} from 'wk-ui/components/modal/modalModel';
 import {ModalFactory} from 'wk-ui/components/modal/modalFactory';
-import fromPairs = require('lodash/fromPairs');
 
 @Component({
     selector: 'users-component',
@@ -19,7 +18,7 @@ export class UsersComponent {
 
     loader: boolean;
     showContent: boolean;
-    users: Array<ILogin.IUserData>;
+    users: Array<IUsers.IUserData>;
 
     modalCreateUser: ModalApi;
 
@@ -28,7 +27,7 @@ export class UsersComponent {
                 private loaderService: LoaderService,
                 private $filter: ng.IFilterService,
                 private modalFactory: ModalFactory,
-                private cd: ChangeDetectorRef){
+                private cd: ChangeDetectorRef) {
 
         this.loader = true;
         this.showContent = false;
@@ -40,8 +39,9 @@ export class UsersComponent {
         // todo change response typedef
         this.usersService.getAllUsers().then((data: IUsers.IServerResponse): void => {
             // httpLoggerService.logRequestTime(res);
-            // $log.info('getAllUsers() [' + res.config.method + '] [' + res.config.url + '] [Params: ' + res.config.params + '] took ' + time + ' seconds.');
-            // this.users = data.users;
+            // $log.info('getAllUsers() [' + res.config.method + '] [' + res.config.url + ']
+            // [Params: ' + res.config.params + '] took ' + time + ' seconds.');
+            this.users = data.data;
             this.loader = false;
             this.showContent = true;
 
@@ -51,16 +51,12 @@ export class UsersComponent {
 
     // Create New User
     createNewUser(): void {
-        // this.modalCreateUser.open();
+        this.modalCreateUser.open();
     }
 
     // Edit User Information
-    editUser() {
-
-    }
+    // editUser() {}
 
     // Delete User
-    deleteUser() {
-
-    }
+    // deleteUser() {}
 }
