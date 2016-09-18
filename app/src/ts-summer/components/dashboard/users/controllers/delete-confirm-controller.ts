@@ -1,6 +1,6 @@
 import {ModalApi} from 'wk-ui/components/modal/modalModel';
 
-export class deleteConfirmController {
+export class DeleteConfirmController {
     locals: any;
     modal: ModalApi;
     closeModal: Function;

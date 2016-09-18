@@ -95,10 +95,6 @@ export class ActionButtonTestComponent {
                 });
         });
 
-        // return this.$http({
-        //     method: 'GET',
-        //     url: '/action_req_1'
-        // });
     };
     // Test 2 Slow
     testAction2(): ng.IHttpPromise<any> {

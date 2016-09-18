@@ -1,8 +1,8 @@
-import {ProfileService} from './profile/services/profile-service';
-import {UserDataService} from '../../services/user-data-service';
+// import {ProfileService} from './profile/services/profile-service';
+// import {UserDataService} from '../../services/user-data-service';
 import vars from 'wk-vars/wk-vars';
-import {Inject} from 'wk-ng/wk-ng';
-import {forwardRef} from 'wk-ng/core';
+// import {Inject} from 'wk-ng/wk-ng';
+// import {forwardRef} from 'wk-ng/core';
 
 export function dashboardRouting($stateProvider: ng.ui.IStateProvider): void {
     $stateProvider.state('dashboardComponent', {

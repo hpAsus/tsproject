@@ -46,7 +46,7 @@ export const UsersEn: IApp.ILanguage = {
                 BIO_VALIDATOR: 'Your bio is too short.'
             }
         },
-        DELETE:{
+        DELETE: {
             TITLE: 'User Delete Confirm',
             MESSAGE: 'Are you really want to remove this user from database?',
             BUTTON_OK: 'Please do it!',

@@ -14,7 +14,7 @@ import {ModalFactory} from 'wk-ui/components/modal/modalFactory';
 
 import {NewUserController} from './controllers/new-user-controller';
 import {UpdateUserController} from './controllers/update-user-controller';
-import {deleteConfirmController} from './controllers/delete-confirm-controller';
+import {DeleteConfirmController} from './controllers/delete-confirm-controller';
 
 @Component({
     selector: 'users-component',
@@ -50,6 +50,7 @@ export class UsersComponent {
             // httpLoggerService.logRequestTime(res);
             // $log.info('getAllUsers() [' + res.config.method + '] [' + res.config.url + ']
             // [Params: ' + res.config.params + '] took ' + time + ' seconds.');
+            console.log(data);
             this.users = data.users;
             this.loader = false;
             this.showContent = true;
@@ -91,7 +92,7 @@ export class UsersComponent {
     deleteUser(login: string): void {
         this.modalConfirmDelete = this.modalFactory.create({
             template: deleteConfirmModal,
-            controller: deleteConfirmController,
+            controller: DeleteConfirmController,
             controllerAs: 'vm',
         });
         this.modalConfirmDelete.open({

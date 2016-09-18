@@ -35,7 +35,7 @@ export class ActionItemComponent {
     currentStatus: string = this.statuses[0];
 
     constructor(private $timeout: ng.ITimeoutService) {
-
+        console.log(this.promise);
     }
 
     // Set status

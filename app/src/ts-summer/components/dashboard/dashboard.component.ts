@@ -45,6 +45,7 @@ export class DashboardPageComponent {
         this.switchLang = app.switchLang;
         this.loaderService.addLoader();
 
+
         if (userDataService.getUserData()) {
             // set locals
             this.loggedIn = userDataService.isAuthorized();

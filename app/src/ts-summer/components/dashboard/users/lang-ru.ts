@@ -47,7 +47,7 @@ export const UsersRu: IApp.ILanguage = {
                 BIO_VALIDATOR: 'Слишком короткая биография.'
             }
         },
-        DELETE:{
+        DELETE: {
             TITLE: 'Подтверждение удаления',
             MESSAGE: 'Вы действительно хотите удалить пользователя?',
             BUTTON_OK: 'Да, хочу',
