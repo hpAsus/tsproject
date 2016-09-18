@@ -18,6 +18,8 @@ export class ActionButtonComponent {
 
     constructor() {
         this.showActionsMenu = false;
+        console.log(this.actions);
+        console.log('\n\n');
     }
 
     // Open/Close Function
