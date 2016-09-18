@@ -1,6 +1,7 @@
 import {Component}   from 'wk-ng/decorators/component';
 import {template} from './actionItem.tpl';
 import {Input} from 'wk-ng/decorators/input';
+import {Output} from 'wk-ng/decorators/output';
 
 
 @Component({
@@ -9,8 +10,8 @@ import {Input} from 'wk-ng/decorators/input';
     directives: []
 })
 export class ActionItemComponent {
-    @Input('@actionTitle') actionTitle: string;
-    @Input('=ngModel') promise: Function;
+    @Input() actionTitle: string;
+    @Output() action: Function;
 
     firstDelay: number = 3 * 1000;
     checkInterval: number = 5 * 1000;
@@ -34,8 +35,8 @@ export class ActionItemComponent {
     statuses: Array<string> = ['play', 'progress', 'success', 'error'];
     currentStatus: string = this.statuses[0];
 
-    constructor(private $timeout: ng.ITimeoutService) {
-        console.log(this.promise);
+    constructor(private $timeout: ng.ITimeoutService, private $interval: ng.IIntervalService) {
+        console.log(this.action);
     }
 
     // Set status
@@ -57,39 +58,39 @@ export class ActionItemComponent {
     // Start Action
     actionStart(): void {
         if (!this.clicked) {
-            let promise: Function = this.promise;
+            let promise: Function = this.action;
             if (this.firstRun) {
-                promise().then(function (): void {
+                promise().then((): void => {
                     this.promiseCompleted = true;
-                }).catch(function (): void {
+                }).catch((): void => {
                     this.promiseCompleted = true;
                     this.promiseError = true;
                 });
 
                 this.setStatus(1);
 
-                // start delay
-                this.$timeout(function (): void {
-                    if (!this.processPromise()) {
-                        this.checkIntervalID = this.$interval(function (): void {
-                            if (this.processPromise()) {
-                                this.$interval.cancel(this.checkIntervalID);
-                            }
-                        }, this.checkInterval);
-
-                        // Final check
-                        this.$timeout(function (): void {
-                            if (this.checkIntervalID) {
-                                this.$interval.cancel(this.checkIntervalID);
-                            }
-                            if (!this.processPromise()) {
-                                this.setStatus(3);
-                            }
-                        }, this.finalCheckDelay);
-
-                    }
-                }, this.firstDelay);
-                this.firstRun = false;
+                // // start delay
+                // this.$timeout((): void => {
+                //     if (!this.processPromise()) {
+                //         this.checkIntervalID = this.$interval( (): void => {
+                //             if (this.processPromise()) {
+                //                 this.$interval.cancel(this.checkIntervalID);
+                //             }
+                //         }, this.checkInterval);
+                //
+                //         // Final check
+                //         this.$timeout((): void => {
+                //             if (this.checkIntervalID) {
+                //                 this.$interval.cancel(this.checkIntervalID);
+                //             }
+                //             if (!this.processPromise()) {
+                //                 this.setStatus(3);
+                //             }
+                //         }, this.finalCheckDelay);
+                //
+                //     }
+                // }, this.firstDelay);
+                // this.firstRun = false;
             }
 
             this.clicked = true;

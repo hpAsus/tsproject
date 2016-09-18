@@ -97,7 +97,7 @@ export class ActionButtonTestComponent {
 
     };
     // Test 2 Slow
-    testAction2(): ng.IHttpPromise<any> {
+    testAction2(): ng.IPromise<any> {
         return this.$http({
             method: 'GET',
             url: '/action_req_2'

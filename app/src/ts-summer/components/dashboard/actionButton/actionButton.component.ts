@@ -12,7 +12,7 @@ import {ActionItemComponent} from './actionItem/actionItem.component';
 })
 export class ActionButtonComponent {
     @Input('@buttonTitle') buttonTitle: string;
-    @Input('=ngModel') actions: Array<IActionButton.IActionItem>;
+    @Input() actions: Array<IActionButton.IActionItem>;
 
     showActionsMenu: boolean;
 
