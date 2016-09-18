@@ -11,6 +11,7 @@ import {ToastService} from '../../../services/toast-service';
     providers: [ActionButtonService]
 })
 export class ActionButtonTestComponent {
+
     constructor(private $actionButton: ActionButtonService,
                 private $http: ng.IHttpService,
                 private $log: ng.ILogService,
@@ -80,11 +81,24 @@ export class ActionButtonTestComponent {
     testActions2: Array<IActionButton.IActionItem>;
 
     // Test 1 Function that returns promise (fast no delay)
-    testAction1(): ng.IHttpPromise<any> {
-        return this.$http({
-            method: 'GET',
-            url: '/action_req_1'
+    testAction1(): Promise<any> {
+        return new Promise((resolve: Function, reject: Function) => {
+            this.$http({
+                method: 'GET',
+                url: '/action_req_1',
+            })
+                .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
+                    (data.data.success) ? resolve(data.data) : reject(data.data);
+                })
+                .catch((error: ILogin.IError) => {
+                    reject(error);
+                });
         });
+
+        // return this.$http({
+        //     method: 'GET',
+        //     url: '/action_req_1'
+        // });
     };
     // Test 2 Slow
     testAction2(): ng.IHttpPromise<any> {

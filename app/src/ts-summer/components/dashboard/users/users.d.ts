@@ -11,7 +11,7 @@ declare module IUsers {
     }
 
     interface IUsersList {
-        [key: string]: IUserData;
+        [key: number]: IUserData;
     }
 
     interface IError {
@@ -21,7 +21,7 @@ declare module IUsers {
 
     interface IServerResponse {
         success: boolean;
-        users: IUsers.IUserData;
+        users: IUsers.IUsersList;
         data?: Array<IUsers.IUserData>;
         error?: string;
     }

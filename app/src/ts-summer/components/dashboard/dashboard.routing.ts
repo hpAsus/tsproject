@@ -1,14 +1,16 @@
 import {ProfileService} from './profile/services/profile-service';
 import {UserDataService} from '../../services/user-data-service';
 import vars from 'wk-vars/wk-vars';
+import {Inject} from 'wk-ng/wk-ng';
+import {forwardRef} from 'wk-ng/core';
 
 export function dashboardRouting($stateProvider: ng.ui.IStateProvider): void {
     $stateProvider.state('dashboardComponent', {
         abstract: true,
         url: '/dashboard',
         resolve: {
-            // userSession: (profileService: ProfileService, userDataService: UserDataService): Promise<void> => {
-            //     debugger;
+            // userSession: (@Inject(forwardRef(() => ProfileService)) profileService: ProfileService,
+            //               @Inject(forwardRef(() => UserDataService)) userDataService: UserDataService): Promise<void> => {
             //     return profileService.checkUserSession()
             //         .then((data: ILogin.IServerResponse) => {
             //             userDataService.setUserData(data.user);

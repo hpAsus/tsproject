@@ -18,7 +18,7 @@ export const template: string = `
                 <div class="t-cell cell-age">{{user.age}}</div>
                 <div class="t-cell cell-actions">
                     <div class="wk-button-bar users-actions">
-                        <button class="wk-button-icon" ng-click="vm.editUser(user.email)">
+                        <button class="wk-button-icon" ng-click="vm.updateUser(user.email)">
                             <span class="wk-icon-pencil"></span>
                         </button>
                         <button class="wk-button-icon wk-button-danger" 
