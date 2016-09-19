@@ -8,27 +8,27 @@ export const template: string = `
  
     <div class="wk-card-group wk-card-group-2" ng-show="vm.showContent">
         <div tabIndex="0" class="wk-card">
-            <p>Login (E-mail)</p>
+            <p translate="PROFILE.LABELS.LOGIN_LABEL"></p>
             <h3>{{vm.user.email}}</h3>
                
             <hr>
             
-            <p>Display Name</p>
+            <p translate="PROFILE.LABELS.NAME_LABEL"></p>
             <h3>{{vm.user.name}}</h3>
             
             <hr>
             
-            <p>Birth Date</p>
+            <p translate="PROFILE.LABELS.BIRTHDATE_LABEL"></p>
             <h3>{{vm.user.birthdate}}</h3>
             
             <hr>
             
-            <p>Display age</p>
+            <p translate="PROFILE.LABELS.AGE_LABEL"></p>
             <h3>{{vm.user.age}}</h3>
             
             <hr>
             
-            <p>Biography</p>
+            <p translate="PROFILE.LABELS.BIO_LABEL"></p>
             <h3>{{vm.user.bio}}</h3>
         </div>
        

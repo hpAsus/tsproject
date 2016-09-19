@@ -15,12 +15,13 @@ import {ModalFactory} from 'wk-ui/components/modal/modalFactory';
 import {NewUserController} from './controllers/new-user-controller';
 import {UpdateUserController} from './controllers/update-user-controller';
 import {DeleteConfirmController} from './controllers/delete-confirm-controller';
+import {UserDataService} from '../../../services/user-data-service';
 
 @Component({
     selector: 'users-component',
     template: template,
     directives: [],
-    providers: [UsersService]
+    providers: [UsersService, UserDataService]
 })
 export class UsersComponent {
 
@@ -37,6 +38,7 @@ export class UsersComponent {
                 private toastService: ToastService,
                 private loaderService: LoaderService,
                 private $filter: ng.IFilterService,
+                private userDataService: UserDataService,
                 private modalFactory: ModalFactory,
                 private cd: ChangeDetectorRef) {
 
@@ -79,9 +81,10 @@ export class UsersComponent {
         });
         this.modalUpdateUser.open({
             closeModal: (): void => this.modalUpdateUser.close(),
-            locals: {
-                user: login
-            }
+            login: login,
+            userDataService: this.userDataService,
+            usersService: this.usersService,
+            cd: this.cd
         });
     }
 

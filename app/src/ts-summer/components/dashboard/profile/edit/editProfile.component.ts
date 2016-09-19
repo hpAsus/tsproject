@@ -44,7 +44,6 @@ export class EditProfilePageComponent {
 
         this.profileService.updateUserProfile(this.user)
             .then((data: ILogin.IServerResponse) => {
-
                 if (data.success) {
                     this.userDataService.setUserData(data.user);
                     this.$state.go('viewProfile');

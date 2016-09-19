@@ -22,6 +22,7 @@ declare module IUsers {
     interface IServerResponse {
         success: boolean;
         users: IUsers.IUsersList;
+        user?: IUsers.IUserData;
         data?: Array<IUsers.IUserData>;
         error?: string;
     }

@@ -8,5 +8,5 @@ export function appLanguage($translateProvider: ng.translate.ITranslateProvider)
     $translateProvider.preferredLanguage(language);
     $translateProvider.translations(language, languages[language]);
     $translateProvider.translations(langRu, languages[langRu]);
-    $translateProvider.useSanitizeValueStrategy('sanitizeParameters');
+    $translateProvider.useSanitizeValueStrategy('escape');
 }

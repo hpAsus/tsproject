@@ -13,7 +13,6 @@ import {ActionItemComponent} from './actionItem/actionItem.component';
 export class ActionButtonComponent {
     @Input('@') buttonTitle: string;
     @Input() actions: Array<IActionButton.IActionItem>;
-
     showActionsMenu: boolean;
 
     constructor() {

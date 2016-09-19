@@ -3,7 +3,6 @@ import {template} from './actionItem.tpl';
 import {Input} from 'wk-ng/decorators/input';
 import {Output} from 'wk-ng/decorators/output';
 
-
 @Component({
     selector: 'ts-action-item',
     template: template,
@@ -21,7 +20,6 @@ export class ActionItemComponent {
     promiseError: boolean = false;
     active: boolean = false;
     checkIntervalID: ng.IPromise<any>;
-
     loadingActiveClassName: string = 'ts-action-loading';
     loadingAnimationClass: string;
 

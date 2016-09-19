@@ -12,21 +12,23 @@ import {TsEmailValidatorDirective} from '../../../validators/tsEmailValidator';
 })
 export class ForgotComponent {
     email: string;
+    login: string;
+    password: string;
 
     constructor(private authService: AuthService, private loaderService: LoaderService, private toastService: ToastService) {
         this.loaderService.addLoader();
     }
 
     submitForm(): void {
-        let login: string = this.email;
+        this.login = this.email;
         this.loaderService.showLoader();
 
-        this.authService.resetPassword(login)
+        this.authService.resetPassword(this.login)
             .then((userData: ILogin.IServerResponse) => {
-                let password: string = userData.user.password;
-                console.log('Sending reset password link for user', userData.user.email, '...');
+                this.password = userData.user.password;
+                console.log('Sending reset password link for user', this.login, '...');
                 this.loaderService.hideLoader();
-                this.toastService.show(password);
+                this.toastService.show(this.password);
             })
             .catch((errorObj: ILogin.IError) => {
                 console.log(errorObj.error);

@@ -8,6 +8,8 @@ import {DashboardComponentEn} from './components/dashboard/lang-en';
 import {DashboardComponentRu} from './components/dashboard/lang-ru';
 import {UsersEn} from './components/dashboard/users/lang-en';
 import {UsersRu} from './components/dashboard/users/lang-ru';
+import {ProfileEn} from './components/dashboard/profile/lang-en';
+import {ProfileRu} from './components/dashboard/profile/lang-ru';
 
 export const languages: ng.translate.ITranslationTable = {
     en: angular.merge(
@@ -15,13 +17,15 @@ export const languages: ng.translate.ITranslationTable = {
         AuthComponentEn,
         ActionButtonComponentEn,
         DashboardComponentEn,
-        UsersEn
+        UsersEn,
+        ProfileEn
     ),
     ru: angular.merge(
         AppRu,
         AuthComponentRu,
         ActionButtonComponentRu,
         DashboardComponentRu,
-        UsersRu
+        UsersRu,
+        ProfileRu
     )
 };
