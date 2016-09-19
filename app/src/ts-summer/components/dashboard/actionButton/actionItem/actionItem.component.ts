@@ -12,22 +12,18 @@ import {Output} from 'wk-ng/decorators/output';
 export class ActionItemComponent {
     @Input() actionTitle: string;
     @Output() action: Function;
-    @Output() callback: Function;
-    @Output() errorCallback: Function;
-
-    title: string;
-
+    @Output() callback: () => Promise<any>;
+    @Output() errorCallback: () => Promise<any>;
     firstDelay: number = 3 * 1000;
     checkInterval: number = 5 * 1000;
     finalCheckDelay: number = 60 * 1000;
-
-    firstRun: boolean = true;
     promiseCompleted: boolean = false;
     promiseError: boolean = false;
-    clicked: boolean = false;
+    active: boolean = false;
     checkIntervalID: ng.IPromise<any>;
 
-    loadingActiveClass: string;
+    loadingActiveClassName: string = 'ts-action-loading';
+    loadingAnimationClass: string;
 
     // Statuses
     // 0 - Play (Default)
@@ -39,11 +35,6 @@ export class ActionItemComponent {
 
     constructor(private $timeout: ng.ITimeoutService,
                 private $interval: ng.IIntervalService) {
-
-        // console.log(this.action);
-        // console.log(this.callback);
-        // console.log(this.errorCallback);
-        // console.log('\n\n');
     }
 
     // Set status
@@ -54,7 +45,6 @@ export class ActionItemComponent {
     // Process promise
     processPromise(): boolean {
         if (this.promiseCompleted) {
-
             if (this.promiseError) {
                 this.setStatus(3);
                 this.errorCallback();
@@ -62,8 +52,8 @@ export class ActionItemComponent {
                 this.setStatus(2);
                 this.callback();
             }
-            // this.promiseError ? this.setStatus(3) : this.setStatus(2);
-            this.firstRun = false;
+            this.loadingAnimationClass = '';
+            this.active = false;
             return true;
         } else {
             return false;
@@ -72,48 +62,43 @@ export class ActionItemComponent {
 
     // Start Action
     actionStart(): void {
-        if (!this.clicked) {
-            let promise: Function = this.action;
-            if (this.firstRun) {
+        // this.active = true;
+        if (!this.active) {
+            this.active = true;
 
-                console.log('Action Fired', this.action);
+            this.action().then((): void => {
+                this.promiseCompleted = true;
+            }).catch((): void => {
+                this.promiseCompleted = true;
+                this.promiseError = true;
+            });
 
-                this.action().then((): void => {
-                    this.promiseCompleted = true;
-                    console.log('success promise');
-                }).catch((): void => {
-                    this.promiseCompleted = true;
-                    this.promiseError = true;
-                    console.log('error promise');
-                });
+            this.setStatus(1);
+            this.loadingAnimationClass = this.loadingActiveClassName;
 
-                this.setStatus(1);
+            // start delay
+            this.$timeout((): void => {
+                if (!this.processPromise()) {
+                    this.checkIntervalID = this.$interval((): void => {
+                        if (this.processPromise()) {
+                            this.$interval.cancel(this.checkIntervalID);
+                        }
+                    }, this.checkInterval);
 
-                // start delay
-                this.$timeout((): void => {
-                    if (!this.processPromise()) {
-                        this.checkIntervalID = this.$interval( (): void => {
-                            if (this.processPromise()) {
-                                this.$interval.cancel(this.checkIntervalID);
-                            }
-                        }, this.checkInterval);
+                    // Final check
+                    this.$timeout((): void => {
+                        if (this.checkIntervalID) {
+                            this.$interval.cancel(this.checkIntervalID);
+                        }
+                        if (!this.processPromise()) {
+                            this.loadingAnimationClass = '';
+                            this.setStatus(3);
+                        }
+                    }, this.finalCheckDelay);
 
-                        // Final check
-                        this.$timeout((): void => {
-                            if (this.checkIntervalID) {
-                                this.$interval.cancel(this.checkIntervalID);
-                            }
-                            if (!this.processPromise()) {
-                                this.setStatus(3);
-                            }
-                        }, this.finalCheckDelay);
+                }
+            }, this.firstDelay);
 
-                    }
-                }, this.firstDelay);
-                this.firstRun = false;
-            }
-
-            this.clicked = true;
         }
     }
 

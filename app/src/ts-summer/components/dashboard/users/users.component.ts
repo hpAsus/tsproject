@@ -50,7 +50,6 @@ export class UsersComponent {
             // httpLoggerService.logRequestTime(res);
             // $log.info('getAllUsers() [' + res.config.method + '] [' + res.config.url + ']
             // [Params: ' + res.config.params + '] took ' + time + ' seconds.');
-            console.log(data);
             this.users = data.users;
             this.loader = false;
             this.showContent = true;
@@ -67,9 +66,7 @@ export class UsersComponent {
             controllerAs: 'vm',
         });
         this.modalCreateUser.open({
-            locals: {
-                modal: this.modalCreateUser,
-            }
+            closeModal: (): void => this.modalCreateUser.close()
         });
     }
 
@@ -81,9 +78,9 @@ export class UsersComponent {
             controllerAs: 'vm',
         });
         this.modalUpdateUser.open({
+            closeModal: (): void => this.modalUpdateUser.close(),
             locals: {
-                user: login,
-                modal: this.modalUpdateUser,
+                user: login
             }
         });
     }
@@ -96,9 +93,9 @@ export class UsersComponent {
             controllerAs: 'vm',
         });
         this.modalConfirmDelete.open({
+            closeModal: (): void => this.modalConfirmDelete.close(),
             locals: {
-                user: login,
-                modal: this.modalConfirmDelete,
+                user: login
             }
         });
     }

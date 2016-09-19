@@ -3,7 +3,7 @@ export const template: string = `
       <section class="wk-modal-content">
         <header class="wk-modal-header">
           <h4 class="wk-modal-title">{{ 'USERS.NEW.TITLE' | translate}}</h4>
-          <button aria-label="close dialog" class="wk-button-icon wk-modal-close" ng-click="vm.modalClose()">
+          <button aria-label="close dialog" class="wk-button-icon wk-modal-close" ng-click="vm.closeModal()">
           <span class="wk-icon-close-square"></span>
           </button>
         </header>
@@ -32,7 +32,7 @@ export const template: string = `
         <footer class="wk-modal-footer">
           <div class="wk-button-bar">
             <div class="wk-button-group-right">
-              <button ng-click="vm.modalClose()" class="wk-button-secondary">{{ 'USERS.NEW.BUTTON_CANCEL' | translate}}</button>
+              <button ng-click="vm.closeModal()" class="wk-button-secondary">{{ 'USERS.NEW.BUTTON_CANCEL' | translate}}</button>
               <button>{{ 'USERS.NEW.BUTTON_CREATE' | translate}}</button>
             </div>
           </div>

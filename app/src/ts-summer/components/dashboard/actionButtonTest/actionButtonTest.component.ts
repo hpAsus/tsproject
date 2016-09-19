@@ -11,9 +11,14 @@ import {ToastService} from '../../../services/toast-service';
     providers: [ActionButtonService]
 })
 export class ActionButtonTestComponent {
+    ab: ActionButtonTestComponent = this;
+    button1: string = 'button1';
+    button2: string = 'button2';
+    testActions1: Array<IActionButton.IActionItem>;
+    testActions2: Array<IActionButton.IActionItem>;
 
     constructor(private $actionButton: ActionButtonService,
-                private $http: ng.IHttpService,
+                public $http: ng.IHttpService,
                 private $log: ng.ILogService,
                 private toastService: ToastService) {
 
@@ -21,8 +26,8 @@ export class ActionButtonTestComponent {
         this.$actionButton.addButton(this.button1);
         this.$actionButton.addAction(this.button1, {
             title: 'ACTIONTEST.ACTION1_TEXT',
-            action: this.testAction1,
-            callback: function (): void {
+            action: this.testAction1.bind(this),
+            callback: (): void => {
                 this.$log.info('Action 1 finished');
                 this.toastService.show('Action 1 finished');
             }
@@ -30,8 +35,8 @@ export class ActionButtonTestComponent {
 
         this.$actionButton.addAction(this.button1, {
             title: 'ACTIONTEST.ACTION2_TEXT',
-            action: this.testAction2,
-            callback: function (): void {
+            action: this.testAction2.bind(this),
+            callback: (): void => {
                 this.$log.info('Action 2 finished');
                 this.toastService.show('Action 2 finished');
             }
@@ -42,27 +47,27 @@ export class ActionButtonTestComponent {
         this.$actionButton.addButton(this.button2);
         this.$actionButton.addAction(this.button2, {
             title: 'ACTIONTEST.ACTION3_TEXT',
-            action: this.testAction3,
-            callback: function (): void {
+            action: this.testAction3.bind(this),
+            callback: (): void => {
                 this.$log.info('Action 3 finished');
                 this.toastService.show('Action 3 finished');
             },
-            errorCallback: function (): void {
+            errorCallback: (): void => {
                 this.$log.info('Error in Action 3!');
             }
         });
         this.$actionButton.addAction(this.button2, {
             title: 'ACTIONTEST.ACTION4_TEXT',
-            action: this.testAction4,
-            callback: function (): void {
+            action: this.testAction4.bind(this),
+            callback: (): void => {
                 this.$log.info('Action 4 finished');
                 toastService.show('Action 4 finished');
             }
         });
         this.$actionButton.addAction(this.button2, {
             title: 'ACTIONTEST.ACTION5_TEXT',
-            action: this.testAction5,
-            callback: function (): void {
+            action: this.testAction5.bind(this),
+            callback: (): void => {
                 this.$log.info('Action 5 finished');
                 this.toastService.show('Action 5 finished');
             }
@@ -71,35 +76,30 @@ export class ActionButtonTestComponent {
         this.testActions2 = this.$actionButton.getActions(this.button2);
     }
 
-    button1: string = 'button1';
-    button2: string = 'button2';
-    testActions1: Array<IActionButton.IActionItem>;
-    testActions2: Array<IActionButton.IActionItem>;
 
     // Test 1 Function that returns promise (fast no delay)
-    testAction1(): Promise<any> {
+    testAction1(): Promise<ILogin.IServerResponse> {
         return new Promise((resolve: Function, reject: Function) => {
             this.$http({
-                method: 'GET',
-                url: '/action_req_1',
-            })
+                    method: 'GET',
+                    url: '/action_req_1',
+                })
                 .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
-                    console.log('Success promise', data);
                     (data.data.success) ? resolve(data.data) : reject(data.data);
                 })
                 .catch((error: ILogin.IError) => {
-                    console.log('Error promise', error);
                     reject(error);
                 });
         });
     };
+
     // Test 2 Slow
-    testAction2(): Promise<any> {
+    testAction2(): Promise<ILogin.IServerResponse> {
         return new Promise((resolve: Function, reject: Function) => {
             this.$http({
-                method: 'GET',
-                url: '/action_req_2',
-            })
+                    method: 'GET',
+                    url: '/action_req_2',
+                })
                 .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
                     (data.data.success) ? resolve(data.data) : reject(data.data);
                 })
@@ -110,12 +110,12 @@ export class ActionButtonTestComponent {
     };
 
     // Test 3. 5 sec delay and error
-    testAction3(): Promise<any> {
+    testAction3(): Promise<ILogin.IServerResponse> {
         return new Promise((resolve: Function, reject: Function) => {
             this.$http({
-                method: 'GET',
-                url: '/action_req_3',
-            })
+                    method: 'GET',
+                    url: '/action_req_3',
+                })
                 .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
                     (data.data.success) ? resolve(data.data) : reject(data.data);
                 })
@@ -126,12 +126,12 @@ export class ActionButtonTestComponent {
     };
 
     // Test 4. Slowest. More than final delay
-    testAction4(): Promise<any> {
+    testAction4(): Promise<ILogin.IServerResponse> {
         return new Promise((resolve: Function, reject: Function) => {
             this.$http({
-                method: 'GET',
-                url: '/action_req_4',
-            })
+                    method: 'GET',
+                    url: '/action_req_4',
+                })
                 .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
                     (data.data.success) ? resolve(data.data) : reject(data.data);
                 })
@@ -142,12 +142,12 @@ export class ActionButtonTestComponent {
     };
 
     // Test 5. Slowest. More than final delay
-    testAction5(): Promise<any> {
+    testAction5(): Promise<ILogin.IServerResponse> {
         return new Promise((resolve: Function, reject: Function) => {
             this.$http({
-                method: 'GET',
-                url: '/action_req_5',
-            })
+                    method: 'GET',
+                    url: '/action_req_5',
+                })
                 .then((data: ng.IHttpPromiseCallbackArg<ILogin.IServerResponse>): void => {
                     (data.data.success) ? resolve(data.data) : reject(data.data);
                 })

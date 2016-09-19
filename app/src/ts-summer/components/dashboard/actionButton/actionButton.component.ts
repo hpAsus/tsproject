@@ -11,15 +11,13 @@ import {ActionItemComponent} from './actionItem/actionItem.component';
     providers: [ActionButtonService]
 })
 export class ActionButtonComponent {
-    @Input('@buttonTitle') buttonTitle: string;
+    @Input('@') buttonTitle: string;
     @Input() actions: Array<IActionButton.IActionItem>;
 
     showActionsMenu: boolean;
 
     constructor() {
         this.showActionsMenu = false;
-        console.log(this.actions);
-        console.log('\n\n');
     }
 
     // Open/Close Function
