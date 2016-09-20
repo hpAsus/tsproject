@@ -1,4 +1,3 @@
-
 export function appRouting($stateProvider: ng.ui.IStateProvider, $urlRouterProvider: ng.ui.IUrlRouterProvider): void {
 
     $urlRouterProvider.otherwise(($injector: ng.auto.IInjectorService) => {

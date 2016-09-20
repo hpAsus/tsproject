@@ -1,7 +1,5 @@
 export const template: string = `
-    <div tabindex="-1" role="dialog" class="wk-modal wk-modal-large wk-modal-with-overlay wk-modal-vertical-middle">
       <section class="wk-modal-content">
-        
         <div class="wk-modal-body">
             {{ 'USERS.DELETE.MESSAGE' | translate}}
         </div>
@@ -14,5 +12,4 @@ export const template: string = `
           </div>
         </footer>
       </section>
-    </div>
 `;

@@ -6,10 +6,10 @@ export const template: string = `
             <div class="wk-tab-bar-gradient">
                 <div class="wk-tab-bar-gradient-before"></div>
                 <ul role="tablist" class="wk-nav wk-nav-tabs">
-                    <li role="tab" aria-selected="true" class="wk-active">
+                    <li role="tab" ui-sref-active="wk-active">
                         <a tabIndex="0" ui-sref="viewProfile">{{ 'PROFILE.VIEWTAB' | translate}}</a>
                     </li>
-                    <li role="tab">
+                    <li role="tab" ui-sref-active="wk-active">
                         <a tabIndex="0" ui-sref="editProfile">{{ 'PROFILE.EDITTAB' | translate}}</a>
                     </li>
                 </ul>

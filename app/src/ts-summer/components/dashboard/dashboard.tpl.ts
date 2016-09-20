@@ -6,10 +6,11 @@ export const template: string = `
           <li role="presentation"><a href="javascript:void(0)"><span class="wk-icon-more"></span>More</a></li>
         </ul>
         <ul class="wk-nav wk-green-icons">
-           
           <li role="presentation">
-            <a ng-click="vm.switchLang('en')"><span>{{ 'LANGS.EN' | translate }}</span></a> | 
-            <a ng-click="vm.switchLang('ru')"><span>{{ 'LANGS.RU' | translate }}</span></a>
+            <a ng-click="vm.switchLang('en')"><span class="wk-icon-globe"></span> {{ 'LANGS.EN' | translate }}</a>
+          </li>
+          <li role="presentation">
+            <a ng-click="vm.switchLang('ru')"><span class="wk-icon-globe"></span> {{ 'LANGS.RU' | translate }}</a>
           </li>
           <li role="presentation">
             <a ui-sref="viewProfile"><span class="wk-icon-user"></span>{{ 'DASHBOARD.ACCOUNT' | translate }}</a>

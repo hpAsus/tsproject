@@ -1,9 +1,5 @@
 import {Component} from 'wk-ng/decorators/component';
-
 import {template} from './users.tpl';
-import {template as newUserModal}  from './tpl/newUser.tpl';
-import {template as updateUserModal}  from './tpl/updateUser.tpl';
-import {template as deleteConfirmModal}  from './tpl/deleteConfirm.tpl';
 
 import {ChangeDetectorRef} from 'wk-ng/core/ng1adaptor/change_detection';
 import {LoaderService} from '../../../services/loader-service';
@@ -11,16 +7,20 @@ import {UsersService} from './services/users-service';
 import {ToastService} from '../../../services/toast-service';
 import {ModalApi} from 'wk-ui/components/modal/modalModel';
 import {ModalFactory} from 'wk-ui/components/modal/modalFactory';
-
-import {NewUserController} from './controllers/new-user-controller';
-import {UpdateUserController} from './controllers/update-user-controller';
-import {DeleteConfirmController} from './controllers/delete-confirm-controller';
 import {UserDataService} from '../../../services/user-data-service';
+
+import {NewUserController} from './create-user/new-user.ctrl';
+import {UpdateUserController} from './update-user/update-user.ctrl';
+import {DeleteUserController} from './delete-user/delete-user.ctrl';
+import {DeleteUserComponent} from './delete-user/delete-user.component';
+import {UpdateUserComponent} from './update-user/update-user.component';
+import {NewUserComponent} from './create-user/new-user.component';
+
 
 @Component({
     selector: 'users-component',
     template: template,
-    directives: [],
+    directives: [NewUserComponent, UpdateUserComponent, DeleteUserComponent],
     providers: [UsersService, UserDataService]
 })
 export class UsersComponent {
@@ -42,12 +42,15 @@ export class UsersComponent {
                 private modalFactory: ModalFactory,
                 private cd: ChangeDetectorRef) {
 
+
+
+        this.getUsersList();
+    }
+
+    // Get All users
+    getUsersList():void {
         this.loader = true;
         this.showContent = false;
-
-        this.test = 'Pimp my car, dude!';
-
-        // todo change response typedef
         this.usersService.getAllUsers().then((data: IUsers.IServerResponse): void => {
             // httpLoggerService.logRequestTime(res);
             // $log.info('getAllUsers() [' + res.config.method + '] [' + res.config.url + ']
@@ -56,49 +59,56 @@ export class UsersComponent {
             this.loader = false;
             this.showContent = true;
 
-            cd.detectChanges();
+            this.cd.detectChanges();
         });
     }
 
     // Create New User
     createNewUser(): void {
-        this.modalCreateUser = this.modalFactory.create({
-            template: newUserModal,
+
+        let modal: ModalApi = this.modalFactory.create({
+            template: '<new-user-modal close-modal="vm.closeModal()" tabindex="-1" ' +
+            'role="dialog" class="wk-modal wk-modal-with-overlay wk-modal-vertical-middle"></new-user-modal>',
             controller: NewUserController,
             controllerAs: 'vm',
         });
-        this.modalCreateUser.open({
-            closeModal: (): void => this.modalCreateUser.close()
+        modal.open({
+            closeModal: (): void => {
+                modal.close();
+                this.getUsersList();
+            }
         });
     }
 
     // Update User Information
     updateUser(login: string): void {
-        this.modalUpdateUser = this.modalFactory.create({
-            template: updateUserModal,
+        let modal: ModalApi = this.modalFactory.create({
+            template: '<update-user-modal></update-user-modal>',
             controller: UpdateUserController,
             controllerAs: 'vm',
         });
-        this.modalUpdateUser.open({
-            closeModal: (): void => this.modalUpdateUser.close(),
+        modal.open({
             login: login,
-            userDataService: this.userDataService,
-            usersService: this.usersService,
-            cd: this.cd
+            closeModal: (): void => {
+                modal.close();
+                this.getUsersList();
+            }
         });
     }
 
     // Delete User
     deleteUser(login: string): void {
-        this.modalConfirmDelete = this.modalFactory.create({
-            template: deleteConfirmModal,
-            controller: DeleteConfirmController,
+        let modal: ModalApi = this.modalFactory.create({
+            template: '<delete-user-modal close-modal="vm.closeModal()" tabindex="-1"' +
+            'role="dialog" class="wk-modal wk-modal-with-overlay wk-modal-vertical-middle"></delete-user-modal>',
+            controller: DeleteUserController,
             controllerAs: 'vm',
         });
-        this.modalConfirmDelete.open({
-            closeModal: (): void => this.modalConfirmDelete.close(),
-            locals: {
-                user: login
+        modal.open({
+            login: login,
+            closeModal: (): void => {
+                modal.close();
+                this.getUsersList();
             }
         });
     }

@@ -11,7 +11,7 @@
         "wk-vars": "0.2.1"
     },
     "env": {
-        "node": "v4.4.5",
-        "platform": "win32"
+        "node": "v5.8.0",
+        "platform": "darwin"
     }
 }

@@ -28,7 +28,6 @@ export class DashboardPageComponent {
 
     constructor(@Inject(forwardRef(() => App)) app: App,
                 private $translate: ng.translate.ITranslateService,
-                // private localStorageService: angular.local.storage.ILocalStorageService,
                 private loaderService: LoaderService,
                 private authService: AuthService,
                 private $state: ng.ui.IStateService,
